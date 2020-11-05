@@ -10,13 +10,13 @@ function App() {
         <div className="row">
           <div className="col-6">
             <Register />
-          </div>{" "}
+          </div>
           <div className="col-6">
             <Login />
           </div>
           <div className="container">
             <div className="row justify-content-center">
-              <div className="m-t-10">
+              <div className=" col-6 my-25">
                 <Todo />
               </div>
             </div>

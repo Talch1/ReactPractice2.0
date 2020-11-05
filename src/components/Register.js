@@ -15,7 +15,7 @@ const SignupSchema = Yup.object().shape({
   password: Yup.string()
     .min(8, "Too Short!")
     .max(25, "Too Long!")
-    .required("Required")
+    .required("Required"),
 });
 
 export const Register = () => (
@@ -34,20 +34,26 @@ export const Register = () => (
       }}
     >
       {({ errors, touched }) => (
-        <Form>
-          <Field name="firstName" />
+        <Form className="form-group">
+          <h5 className="mt-2 text-primary">FirstName</h5>
+          <Field name="firstName" className="form-control" />
           {errors.firstName && touched.firstName ? (
-            <div>{errors.firstName}</div>
+            <div className="text-danger">{errors.firstName}</div>
           ) : null}
-          <Field name="lastName" />
+          <h5 className="mt-2 text-primary">LastName</h5>
+          <Field name="lastName" className="form-control" />
           {errors.lastName && touched.lastName ? (
-            <div>{errors.lastName}</div>
+            <div className="text-danger">{errors.lastName}</div>
           ) : null}
-          <Field name="email" type="email" />
-          {errors.email && touched.email ? <div>{errors.email}</div> : null}
-           <Field name="password" type="password" />
-          {errors.password && touched.password ? <div>{errors.password}</div> : null}
-          <button type="submit">Submit</button>
+          <h5 className="mt-2 text-primary">Email</h5>
+          <Field name="email" type="email" className="form-control" />
+          {errors.email && touched.email ? <div className="text-danger">{errors.email}</div> : null}
+          <h5 className="mt-2 text-primary">Password</h5>
+          <Field name="password" type="password" className="form-control " />
+          {errors.password && touched.password ? (
+            <div className="text-danger">{errors.password}</div>
+          ) : null}
+          <button className= "btn btn-primary mt-3" type="submit">Submit</button>
         </Form>
       )}
     </Formik>
