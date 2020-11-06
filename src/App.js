@@ -7,22 +7,22 @@ function App() {
   return (
     <div className="App">
       <div className="container">
-        <div className="row">
-          <div className="col-6">
+        <div className="row justify-content-between mt-3">
+          <div className="col-5  ">
             <Register />
           </div>
-          <div className="col-6">
+          <div className="col-5 ">
             <Login />
           </div>
-          <div className="container">
-            <div className="row justify-content-center">
-              <div className=" col-6 my-25">
+        </div>
+      </div>
+      <div className="container">
+            <div className="row  mt-3  justify-content-center">
+              <div>
                 <Todo />
               </div>
             </div>
           </div>
-        </div>
-      </div>
     </div>
   );
 }
