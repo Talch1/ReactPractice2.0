@@ -7,17 +7,17 @@ function App() {
   return (
     <div className="App">
       <div className="container">
-        <div className="row justify-content-between mt-3">
-          <div className="col-6  ">
+        <div className="row justify-content-around mt-3">
+          <div className="col-5  ">
             <Register />
           </div>
-          <div className="col-6 ">
+          <div className="col-5 ">
             <Login />
           </div>
         </div>
       </div>
       <div className="container">
-            <div className="row  mt-3  justify-content-center">
+            <div className="row  mt-3  justify-content-center ">
               <div>
                 <Todo />
               </div>

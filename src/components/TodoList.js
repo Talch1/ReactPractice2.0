@@ -1,19 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TodoItem from "./TodoItem";
 
 const Todo = () => {
-  const [todos, setTodos] = useState([{
-    title:'Do somesing',
-    descriprion:'Do somesing NoW!!!!!!!'
-  }]);
+  const [todos, setTodos] = useState([]);
 
-
+  useEffect(() => {
+    fetch("http://localhost:8081/todos/", {
+      headers: {
+        method:"Get",
+        "Content-Type": "application/json",
+        token: "123",
+      },
+    })
+      .then((response) => response.json())
+      .then((todos) => setTodos(todos))
+      .then((todos) => console.log(todos))}, []);
   return (
     <div>
       <h1>Todo</h1>
       <ul className="list-group ">
-      {todos.map(function(singleTodo)
-      {return <TodoItem singleTodo = {singleTodo}  key={singleTodo.id}/> }) }  
+        {todos.map(function (singleTodo) {
+          return <TodoItem singleTodo={singleTodo} key={singleTodo.id} />;
+        })}
       </ul>
     </div>
   );
