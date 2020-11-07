@@ -13,8 +13,7 @@ const Todo = () => {
       },
     })
       .then((response) => response.json())
-      .then((todos) => setTodos(todos))
-      .then((todos) => console.log(todos))}, []);
+      .then((todos) => setTodos(todos))}, []);
   return (
     <div>
       <h1>Todo</h1>
