@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 
@@ -19,6 +19,7 @@ const SignupSchema = Yup.object().shape({
 });
 
 const Register = () => {
+  
   const reg = (firstName,lastName,email,password) => {
     fetch("http://localhost:8081/register/", {
       method: "POST",
@@ -80,6 +81,6 @@ const Register = () => {
         )}
       </Formik>
     </div>
-  );
-};
+  )
+}
 export default Register;

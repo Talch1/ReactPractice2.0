@@ -1,24 +1,51 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 
 const SignupSchema = Yup.object().shape({
-    firstName: Yup.string()
-      .min(2, "Too Short!")
-      .max(50, "Too Long!")
-      .required("Required"),
-    lastName: Yup.string()
-      .min(2, "Too Short!")
-      .max(50, "Too Long!")
-      .required("Required"),
-    email: Yup.string().email("Invalid email").required("Required"),
-    password: Yup.string()
-      .min(8, "Too Short!")
-      .max(25, "Too Long!")
-      .required("Required"),
-  });
+  email: Yup.string().email("Invalid email").required("Required"),
+  password: Yup.string()
+    .min(8, "Too Short!")
+    .max(25, "Too Long!")
+    .required("Required"),
+});
   
-export const Login = () =>{
+export const Login = (props) => {
+
+  const loged=(data)=>{
+     props.updateData(data)
+  }
+
+
+  const [token, setToken] = useState("");
+  const login = (email,password) => {
+    fetch("http://localhost:8081/login/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name:null,
+        lastName:null,
+        email:email,
+        password:password,
+        token: null,
+        todos: [],
+      }),
+    })
+    .then(res=> {if (res.status === 200){
+      console.log("dddd")
+      return res.text()
+    }
+
+    })
+   .then(function(data) {
+      setToken(data)
+      if (token !==""){loged(token)}
+      
+}) 
+
+  };
     return(
         <div>
             <h1>Login</h1>
@@ -28,8 +55,9 @@ export const Login = () =>{
         password: "",
       }}
       validationSchema={SignupSchema}
-      onSubmit={(values) => {
-        console.log(values);
+      onSubmit={(user) => {
+        login(user.email,user.password)
+        console.log(user);
       }}
     >
       {({ errors, touched }) => (
