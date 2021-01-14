@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React from 'react';
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 
@@ -10,14 +10,8 @@ const SignupSchema = Yup.object().shape({
     .required("Required"),
 });
   
-export const Login = (props) => {
+export const Login = ({updateData}) => {
 
-  const loged=(data)=>{
-     props.updateData(data)
-  }
-
-
-  const [token, setToken] = useState("");
   const login = (email,password) => {
     fetch("http://localhost:8081/login/", {
       method: "POST",
@@ -34,14 +28,12 @@ export const Login = (props) => {
       }),
     })
     .then(res=> {if (res.status === 200){
-      console.log("dddd")
       return res.text()
     }
-
     })
    .then(function(data) {
-      setToken(data)
-      if (token !==""){loged(token)}
+ 
+      updateData(data)
       
 }) 
 

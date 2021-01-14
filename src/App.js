@@ -2,30 +2,17 @@ import "./App.css";
 import React, { useState } from "react";
 import Login from "./components/Login";
 import Register from "./components/Register";
-import Todo from "./components/TodoList";
+import TodoList from "./components/TodoList";
 
 function App() {
-  const [token, setToken] = useState("");
-  const [todos, setTodos] = useState([]);
-  const updateData = (data) => {
-    setToken(data);
-    if (token !== "") {
-      getTodo(token);
-      setIfLoged(false);
-    }
+  const [token, setToken] = useState("123");
+
+  const updateData = (token) => {
+    console.log(token);
+    setToken(token);
+    if(token !== undefined){ setIfLoged(false);}
   };
 
-    const getTodo = (token) => {
-      fetch("http://localhost:8081/todos/", {
-        headers: {
-          method:"Get",
-          "Content-Type": "application/json",
-          token: `${token}`,
-        },
-      })
-        .then((response) => response.json())
-        .then(response => console.log(response))
-        .then((todos) => setTodos(todos))};
   const [ifLogend, setIfLoged] = useState(true);
   return (
     <div className="App">
@@ -40,7 +27,7 @@ function App() {
       <div className="container">
         <div className="row  mt-3  justify-content-center ">
           <div>
-            <Todo />
+            <TodoList token={token} />
           </div>
         </div>
       </div>
