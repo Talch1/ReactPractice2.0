@@ -10,10 +10,10 @@ const SignupSchema = Yup.object().shape({
     .required("Required"),
 });
   
-export const Login = ({updateData}) => {
+export const Login =  ({updateData}) => {
 
-  const login = (email,password) => {
-    fetch("http://localhost:8081/login/", {
+   const login = (email,password) => {
+      fetch("http://localhost:8081/login/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
